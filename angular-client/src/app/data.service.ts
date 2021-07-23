@@ -48,10 +48,10 @@ mutation deleteUser($email:String!){
 }
 `
 @Injectable()
-export class DataService {
-    fetchData = new EventEmitter<User[]>();
+export class DataService<T> {
+    fetchData = new EventEmitter<T[]>();
 
-    private data:User[]=[]
+    private data:T[]=[]
 
     constructor(private appolo:Apollo){}
 
@@ -65,7 +65,7 @@ export class DataService {
         })
     }
 
-    updateData(inputUser:User,inputEmail:string){
+    updateData(inputUser:T,inputEmail:string){
         this.appolo.mutate({
             mutation:Update_User,
             variables:{

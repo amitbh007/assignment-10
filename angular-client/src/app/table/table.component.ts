@@ -2,12 +2,8 @@ import { Component, ElementRef, Input, OnInit, Renderer2, ViewChild } from '@ang
 import { DataService } from '../data.service';
 import { User } from '../user.model';
 
-const classToObject = (theClass:any) => {
-  const originalClass = theClass || {}
-  const keys = Object.getOwnPropertyNames(Object.getPrototypeOf(User))
-  console.log("keys",keys);
-  return {}
-  
+class genericTableComponent<T>{
+
 }
 
 @Component({
@@ -20,14 +16,19 @@ export class TableComponent implements OnInit {
   @ViewChild('maintable',{static: false}) mainTable:ElementRef;
 
   users:User[] = [];
-  dataType:any;
+  headings:any[] = [];
   @Input('show') show:boolean = false;
 
-  constructor(private dataService:DataService,private renderer:Renderer2) { }
+  constructor(private dataService:DataService<User>,private renderer:Renderer2) { }
 
   ngOnInit(): void {
-    this.dataType = classToObject(User);
-    console.log("user fields",this.dataType)
+
+    // add dynamic headings
+    const args = new User("null");
+    this.headings = Object.keys(args)
+    this.headings.push("options");
+
+
     this.dataService.fetchData.subscribe(data=>{
       this.users = data;
     })

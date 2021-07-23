@@ -21,7 +21,7 @@ export class TableRowComponent implements OnInit {
   @Input('user') user!:User;
 
   outputObject:any= [];
-  constructor(private dataService:DataService) {
+  constructor(private dataService:DataService<User>) {
 
   }
 

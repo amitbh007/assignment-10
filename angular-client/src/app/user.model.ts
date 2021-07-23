@@ -1,11 +1,23 @@
 export class User{
-    firstName : string;
-    middleName : string;
-    lastName:string;
-    email:string;
-    phone:string;
-    address:string;
+    firstName:string
+    lastName:string
+    middleName:string
     roleKey:number
+    address:string
+    customerName:string
+    phone:string
+    email:string
+
+    constructor(init:string){
+        this.firstName = init
+        this.middleName = init
+        this.lastName = init
+        this.roleKey = 0
+        this.address = init
+        this.customerName = init
+        this.phone = init
+        this.email = init
+    }
 }
 
 export enum Role {

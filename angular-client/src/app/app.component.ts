@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { DataService } from './data.service';
+import { User } from './user.model';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,7 @@ export class AppComponent implements OnInit{
   title = 'angular-client';
   showTable = false;
   // @ViewChild('loadButton') loadButton:ElementRef;
-  constructor(private dataService:DataService){}
+  constructor(private dataService:DataService<User>){}
   ngOnInit(){
     
   }
